@@ -1,4 +1,5 @@
 import { ActionMenu } from "@/components/Molecules/ActionMenu";
+import { Products } from "@/components/Molecules/ActionMenu/ActionMenu.stories";
 import { ProductItem } from "@/components/Molecules/ProductItem";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
@@ -7,33 +8,9 @@ export default function Home() {
     <main className="p-3 lg:p-8">
       <div className="flex justify-end py-4">
         <ActionMenu>
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-          />
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-            description="some description goes here !!!"
-          />
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-            description="some description goes here !!!"
-            tag="3 x 5ml for $40.00"
-          />
+          {Products.map((product, index) => (
+            <ProductItem key={index} {...product} />
+          ))}
         </ActionMenu>
       </div>
       <p>
@@ -80,33 +57,9 @@ export default function Home() {
       </p>
       <div className="flex justify-end py-4">
         <ActionMenu>
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-          />
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-            description="some description goes here !!!"
-          />
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-            description="some description goes here !!!"
-            tag="3 x 5ml for $40.00"
-          />
+          {Products.map((product, index) => (
+            <ProductItem key={index} {...product} />
+          ))}
         </ActionMenu>
       </div>
       <p>
@@ -167,33 +120,9 @@ export default function Home() {
       </p>
       <div className="flex justify-end py-4">
         <ActionMenu>
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-          />
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-            description="some description goes here !!!"
-          />
-          <ProductItem
-            title={
-              <span className="font-semibold">
-                <AddShoppingCartIcon className="mr-2" /> 50ml
-              </span>
-            }
-            price="$80.00"
-            description="some description goes here !!!"
-            tag="3 x 5ml for $40.00"
-          />
+          {Products.map((product, index) => (
+            <ProductItem key={index} {...product} />
+          ))}
         </ActionMenu>
       </div>
     </main>

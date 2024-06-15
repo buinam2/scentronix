@@ -12,7 +12,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
   tag,
 }) => {
   return (
-    <div className="bg-white shadow-md rounded p-6 py-3 w-[250px] md:w-[400px] mb-2 leading-[100%]">
+    <div className="bg-white shadow-md rounded p-6 py-3 w-[250px] md:w-[400px] mb-2 leading-[100%] hover:cursor-pointer">
       <div className="flex justify-between items-center">
         <div>
           <span>{title}</span>

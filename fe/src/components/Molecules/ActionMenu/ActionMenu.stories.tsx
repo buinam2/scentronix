@@ -7,35 +7,29 @@ export default {
   component: ActionMenu,
 } as Meta;
 
+export const Products = [
+  {
+    title: "50ml",
+    price: "$80.00",
+  },
+  {
+    title: "50ml",
+    price: "$80.00",
+    description: "some description goes here !!!",
+  },
+  {
+    title: "50ml",
+    price: "$80.00",
+    description: "some description goes here !!!",
+    tag: "3 x 5ml for $40.00",
+  },
+]
+
 const Examplechildren = () => (
   <>
-    <ProductItem
-      title={
-        <span className="font-semibold">
-          <AddShoppingCartIcon className="mr-2" /> 50ml
-        </span>
-      }
-      price="$80.00"
-    />
-    <ProductItem
-      title={
-        <span className="font-semibold">
-          <AddShoppingCartIcon className="mr-2" /> 50ml
-        </span>
-      }
-      price="$80.00"
-      description="some description goes here !!!"
-    />
-    <ProductItem
-      title={
-        <span className="font-semibold">
-          <AddShoppingCartIcon className="mr-2" /> 50ml
-        </span>
-      }
-      price="$80.00"
-      description="some description goes here !!!"
-      tag="3 x 5ml for $40.00"
-    />
+    {Products.map((product, index) => (
+      <ProductItem key={index} {...product} />
+    ))}
   </>
 );
 
