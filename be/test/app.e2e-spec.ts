@@ -3,7 +3,7 @@ import { HttpException, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { AppService } from './../src/app.service';
-import fetchMock from 'jest-fetch-mock';
+import { servers } from '../src/constants/servers';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -17,8 +17,21 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
     appService = app.get<AppService>(AppService);
-    fetchMock.resetMocks();
   });
+
+  it('should return the online server with the lowest priority', async () => {
+    const results = await Promise.all(
+      servers.map((server) => appService['checkServer'](server)),
+    );
+
+    const onlineServers = results.filter((server) => server !== null);
+    const expectedServer = onlineServers.reduce((prev, current) =>
+      prev.priority > current.priority ? prev : current,
+    );
+
+    const result = await appService.findServer();
+    expect(result).toEqual(expectedServer);
+  }, 20000);
 
   it('/find-server (GET)', async () => {
     jest.spyOn(appService, 'findServer').mockImplementation(async () => ({
@@ -47,19 +60,4 @@ describe('AppController (e2e)', () => {
 
     expect(response.body.message).toBe('No servers available!');
   });
-
-  it('should return the online server with the lowest priority', async () => {
-    fetchMock.mockResponses(
-      [JSON.stringify({}), { status: 500 }],
-      [JSON.stringify({}), { status: 200 }],
-      [JSON.stringify({}), { status: 200 }],
-      [JSON.stringify({}), { status: 500 }],
-    );
-
-    const result = await appService.findServer();
-    expect(result).toEqual({
-      url: 'https://gitlab.com',
-      priority: 4,
-    });
-  }, 20000);
 });
